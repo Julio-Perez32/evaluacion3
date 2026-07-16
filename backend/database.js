@@ -12,6 +12,3 @@ conection.on("disconected", () =>{
 conection.on("error", (err) =>{
     console.log("error", err)
 })
-
-
-
