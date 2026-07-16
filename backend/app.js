@@ -1,6 +1,9 @@
 import express from "express";
-
-
+import loginAdminRoutes from "./src/routes/loginAdmin.js"
+import loginUserRoutes from "./src/routes/loginUsers.js"
+import registerUserRoutes from "./src/routes/registerUsers.js"
+import registerAdminRoutes from "./src/routes/registerAdmin.js"
+import ticketsPurchaseRoutes from "./src/routes/ticketsPurchase.js";
 
 import cors from "cors"
 import cookieParser from "cookie-parser";
@@ -12,7 +15,7 @@ app.use(cors({
 }));
 app.use(cookieParser());
 app.use(express.json());
-
+app.use("/api/loginAdmin", loginAdminRoutes)
 
 
 
