@@ -18,7 +18,7 @@ const adminSchema = new Schema({
         type: Number
     },
     timeOut:{
-        type: String
+        type: Date
     }
 },{
     timestamps: true,
