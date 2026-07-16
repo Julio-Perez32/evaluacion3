@@ -47,3 +47,5 @@ wompiController.paymentTest = async (req, res) => {
     return res.status(500).json({ message: "error interno nose jeje xdxdxdxd" })
 }
 }
+
+export default wompiController

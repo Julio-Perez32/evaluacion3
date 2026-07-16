@@ -1,11 +1,12 @@
 import express from "express"
 import ticketsPurchase from "../controller/ticketsPurchaseController.js"
+import { validateAuthCookie } from "../middleware/authMiddleware.js";
 const router = express.Router();
 router.route("/")
-.get(ticketsPurchase.getAll)
-.post(ticketsPurchase.create)
+.get(validateAuthCookie(["Administrator"]), ticketsPurchase.getAll)
+.post(validateAuthCookie(["User"]), ticketsPurchase.create)
 
 router.route("/:id")
-.put(ticketsPurchase.update)
-.delete(ticketsPurchase.delete)
+.put(validateAuthCookie(["User", "Administrator"]), ticketsPurchase.update)
+.delete(validateAuthCookie(["Administrator"]), ticketsPurchase.delete)
 export default router

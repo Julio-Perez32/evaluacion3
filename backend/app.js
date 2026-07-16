@@ -4,6 +4,7 @@ import loginUserRoutes from "./src/routes/loginUsers.js"
 import registerUserRoutes from "./src/routes/registerUsers.js"
 import registerAdminRoutes from "./src/routes/registerAdmin.js"
 import ticketsPurchaseRoutes from "./src/routes/ticketsPurchase.js";
+import wompiRoutes from "./src/routes/wompi.js"
 
 import cors from "cors"
 import cookieParser from "cookie-parser";
@@ -20,5 +21,6 @@ app.use("/api/loginUsers", loginUserRoutes)
 app.use("/api/registerAdmin", registerAdminRoutes)
 app.use("/api/registerUSer", registerUserRoutes)
 app.use("/api/ticketsPurchase", ticketsPurchaseRoutes)
+app.use("/api/wompi", wompiRoutes)
 
 export default app
