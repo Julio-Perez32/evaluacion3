@@ -30,7 +30,7 @@ registerAdminController.register = async (req, res) => {
         );
         res.cookie("verificationToken", tokenCode, { maxAge: 15 * 60 * 1000 });
         const transporter = nodemailer.createTransport({
-            servide: "gmail",
+            service: "gmail",
             auth: {
                 user: config.email.user_email,
                 pass: config.email.user_password
