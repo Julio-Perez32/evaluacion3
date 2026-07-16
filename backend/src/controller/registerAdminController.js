@@ -4,7 +4,6 @@ import jsonwebtoken from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import adminModel from "../model/administrators";
 import { config } from "../../config.js";
-import { text } from "stream/consumers";
 const registerAdminController = {}
 
 registerAdminController.register = async (req, res) => {
@@ -55,3 +54,42 @@ registerAdminController.register = async (req, res) => {
         return res.status(500).json({ message: "error interno nose jeje xdxdxdxd" })
     }
 }
+
+registerAdminController.verifyCode = async(req, res) =>{
+    try{
+        const {verificationCodeRequest} = req.body;
+        const token = req.cookies.verificationToken;
+        console.log(token);
+        const decoded =jsonwebtoken.verify (token, config.JWT.secret)
+        const {
+                name,
+                email,
+                password: passwordHash,
+                isVerified,
+                loginAttemps,
+                timeOut,
+                verificationCode: storedCode
+        } = decoded;
+        if (verificationCodeRequest !== storedCode){
+            return res.status(400).json ({message: "nose algun error tiene que dar xdxdd pq tiene q ser igual y no lo es, you feel me?"})
+        }
+        const newAdmin = new adminModel({
+                name,
+                email,
+                password: passwordHash,
+                isVerified: true,
+                loginAttemps,
+                timeOut,
+        })
+        await newAdmin.save();
+        const admin = await adminModel.findOne({email})
+        admin.isVerified = true;
+        await admin.save();
+        res.clearCookie("verificationToken");
+        res.json({message: "cuentita verificadita brou"})
+    } catch (error) {
+        console.error("error al obtener los datos: ", error)
+        return res.status(500).json({ message: "error interno nose jeje xdxdxdxd" })
+    }
+}
+export default registerAdminController
