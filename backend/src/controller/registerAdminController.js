@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 import crypto from "crypto";
 import jsonwebtoken from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import adminModel from "../model/administrators";
+import adminModel from "../model/administrators.js";
 import { config } from "../../config.js";
 const registerAdminController = {}
 
