@@ -19,7 +19,7 @@ app.use(express.json());
 app.use("/api/loginAdmin", loginAdminRoutes)
 app.use("/api/loginUsers", loginUserRoutes)
 app.use("/api/registerAdmin", registerAdminRoutes)
-app.use("/api/registerUSer", registerUserRoutes)
+app.use("/api/registerUser", registerUserRoutes)
 app.use("/api/ticketsPurchase", ticketsPurchaseRoutes)
 app.use("/api/wompi", wompiRoutes)
 
